@@ -1,7 +1,11 @@
 from datetime import datetime
 
 from pydantic import BaseModel
-from models.data_classes import *
+
+from models.location import Location
+from models.priority import Priority
+from models.status import Status
+
 
 class TransportRequest(BaseModel):
     id: str

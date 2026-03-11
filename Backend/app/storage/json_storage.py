@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from threading import Lock
 
-DATA_FILE = Path("Backend/data/patient_transports.json")
+DATA_FILE = Path("data/patient_transports.json")
 file_lock = Lock()
 
 
