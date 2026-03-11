@@ -8,10 +8,13 @@ file_lock = Lock()
 
 def load_data():
     with file_lock:
+        if not DATA_FILE.exists():
+            return {"transports": []}
+
         with open(DATA_FILE, "r") as f:
             return json.load(f)
 
 def save_data(data):
     with file_lock:
         with open(DATA_FILE, "w") as f:
-            json.dump(data, f)
+            json.dump(data, f, indent=4, ensure_ascii=False)

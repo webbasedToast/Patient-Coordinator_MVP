@@ -27,7 +27,7 @@ def create_transport_endpoint(data: TransportCreate):
         data.drop_off_location,
         data.assigned_timeframe,
         data.priority
-        )
+    )
 
 @router.patch("/{transport_id}/status")
 def update_transport(transport_id: UUID, update: TransportStatusUpdate):

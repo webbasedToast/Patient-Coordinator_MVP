@@ -1,4 +1,5 @@
 from datetime import datetime
+from uuid import UUID
 
 from pydantic import BaseModel
 
@@ -14,4 +15,12 @@ class TransportCreate(BaseModel):
     priority: Priority
 
 class TransportStatusUpdate(BaseModel):
+    status: Status
+
+class TransportResponse(BaseModel):
+    id: UUID
+    pickup_location: Location
+    drop_off_location: Location
+    assigned_timeframe: datetime
+    priority: Priority
     status: Status
