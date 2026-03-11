@@ -17,6 +17,17 @@ def get_transport_by_id(transport_id: str):
 
     return None
 
+def delete_transport(transport_id: str):
+    data = load_data()
+
+    for t in data["transports"]:
+        if t["id"] == transport_id:
+            data["transports"].remove(t)
+            save_data(data)
+            return t
+
+    return None
+
 def create_transport_request(pickup_location, drop_off_location, assigned_timeframe, priority):
     data = load_data()
 

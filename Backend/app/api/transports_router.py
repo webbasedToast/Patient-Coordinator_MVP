@@ -1,5 +1,3 @@
-from uuid import UUID
-
 from fastapi import APIRouter, HTTPException
 
 from schemas.schemas import *
@@ -29,11 +27,17 @@ def create_transport_endpoint(data: TransportCreate):
         data.priority
     )
 
-@router.patch("/{transport_id}/status")
+@router.put("/{transport_id}/status")
 def update_transport(transport_id: UUID, update: TransportStatusUpdate):
     transport = update_transport_request(str(transport_id), update.status)
     if not transport:
         raise HTTPException(status_code=404, detail=f"no transport found with id {transport_id}")
     return transport
 
+@router.delete("/{transport_id}")
+def delete_transport(transport_id: UUID):
+    transport = delete_transport(str(transport_id))
+    if transport is None:
+        raise HTTPException(status_code=404, detail=f"no transport found with id {transport_id}")
 
+    return transport
