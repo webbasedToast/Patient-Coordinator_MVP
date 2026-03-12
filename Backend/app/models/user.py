@@ -1,6 +1,11 @@
-from enum import Enum
+from dataclasses import dataclass
+from uuid import UUID
+
+from models.user_type import UserType
 
 
-class User(str, Enum):
-    BASIC_USER = "BASIC_USER"
-    ADMIN = "ADMIN"
+@dataclass
+class User:
+    id: UUID
+    user_name: str
+    role: UserType
