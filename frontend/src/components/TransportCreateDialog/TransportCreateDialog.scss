@@ -1,0 +1,16 @@
+.MuiDialog-paper {
+  min-width: 420px;
+}
+
+.MuiDialogContent-root {
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+
+  margin-top: 8px;
+}
+
+.MuiDialogActions-root {
+  padding: 16px;
+}

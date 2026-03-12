@@ -1,0 +1,17 @@
+.MuiDialog-paper {
+  min-width: 420px;
+}
+
+.MuiDialogContent-root {
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+
+  margin-top: 8px;
+}
+
+.transportId {
+  font-size: 0.85rem;
+  color: #757575;
+}
