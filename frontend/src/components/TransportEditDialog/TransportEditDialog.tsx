@@ -2,7 +2,27 @@ import {useEffect, useState} from "react";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 
 import {updateTransportStatus} from "../../api/transports.ts";
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@mui/material";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select
+} from "@mui/material";
+
+import "./TransportEditDialog.scss"
+
+const STATUS_OPTIONS = [
+    "OPEN",
+    "ASSIGNED",
+    "IN_PROGRESS",
+    "CLOSED",
+    "CANCELLED"
+];
 
 export default function TransportEditDialog({
     transport,
@@ -35,12 +55,18 @@ export default function TransportEditDialog({
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>Edit Transport Status</DialogTitle>
             <DialogContent>
-                <TextField
-                    label="Status"
-                    fullWidth
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value)}
-                />
+                <FormControl fullWidth>
+                    <InputLabel>Status</InputLabel>
+                    <Select
+                        value={status}
+                        label="Status"
+                        onChange={event => setStatus(event.target.value)}
+                    >
+                        {STATUS_OPTIONS.map(s =>
+                            <MenuItem key={s} value={s}>{s}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
             </DialogContent>
 
             <DialogActions>
