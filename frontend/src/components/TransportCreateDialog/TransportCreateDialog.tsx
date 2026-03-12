@@ -20,14 +20,6 @@ import {
 import "./TransportCreateDialog.scss"
 import {DatePicker} from "@mui/x-date-pickers";
 
-const STATUS_OPTIONS = [
-    "OPEN",
-    "ASSIGNED",
-    "IN_PROGRESS",
-    "CLOSED",
-    "CANCELLED"
-];
-
 const LOCATION_OPTIONS = [
     "STATION",
     "PATIENT_ROOM",
@@ -46,10 +38,10 @@ export default function TransportCreateDialog({ open, onClose }) {
 
     const queryClient = useQueryClient()
     const [status, setStatus] = useState("OPEN")
-    const [pickupLocation, setPickupLocation] = useState("")
-    const [dropOffLocation, setDropOffLocation] = useState("")
+    const [pickup_location, setPickupLocation] = useState("")
+    const [drop_off_location, setDropOffLocation] = useState("")
     const [priority, setPriority] = useState(0)
-    const [assignedTimeframe, setAssignedTimeframe] = useState(dayjs())
+    const [assigned_timeframe, setAssignedTimeframe] = useState(dayjs())
 
     const createMutation = useMutation({
         mutationFn: createTransport,
@@ -61,11 +53,10 @@ export default function TransportCreateDialog({ open, onClose }) {
 
     function handleSubmit() {
         createMutation.mutate({
-            status,
-            pickupLocation: pickupLocation,
-            drop_off_location: dropOffLocation,
+            pickup_location: pickup_location,
+            drop_off_location: drop_off_location,
             priority: priority,
-            assigned_timeframe: assignedTimeframe.toISOString()
+            assigned_timeframe: assigned_timeframe.toISOString()
         })
     }
 
@@ -75,22 +66,9 @@ export default function TransportCreateDialog({ open, onClose }) {
             <DialogContent>
 
                 <FormControl fullWidth>
-                    <InputLabel>Status</InputLabel>
-                    <Select
-                        value={status}
-                        label="Status"
-                        onChange={event => setStatus(event.target.value)}
-                    >
-                        {STATUS_OPTIONS.map(s =>
-                            <MenuItem key={s} value={s}>{s}</MenuItem>
-                        )}
-                    </Select>
-                </FormControl>
-
-                <FormControl fullWidth>
                     <InputLabel>Pickup Location</InputLabel>
                     <Select
-                        value={pickupLocation}
+                        value={pickup_location}
                         label="Pickup Location"
                         onChange={event => setPickupLocation(event.target.value)}
                     >
@@ -103,7 +81,7 @@ export default function TransportCreateDialog({ open, onClose }) {
                 <FormControl fullWidth>
                     <InputLabel>Drop Off Location</InputLabel>
                     <Select
-                        value={dropOffLocation}
+                        value={drop_off_location}
                         label="Drop Off Location"
                         onChange={event => setDropOffLocation(event.target.value)}
                     >
@@ -132,7 +110,7 @@ export default function TransportCreateDialog({ open, onClose }) {
 
                 <DatePicker
                     label="Assigned Date"
-                    value={assignedTimeframe}
+                    value={assigned_timeframe}
                     onChange={(newValue) => setAssignedTimeframe(newValue)}
                 />
 
