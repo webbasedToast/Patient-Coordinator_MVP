@@ -1,13 +1,13 @@
 import { api } from "./client.ts";
-import type {Transport} from "../types/Transport.ts";
+import type {TransportRequest} from "../types/TransportRequest.ts";
 
-export async function fetchTransports(): Promise<Transport[]> {
+export async function fetchTransports(): Promise<TransportRequest[]> {
     const res = await api.get('/transports');
 
     return res.data;
 }
 
-export async function createTransport(data: Partial<Transport>) {
+export async function createTransport(data: Partial<TransportRequest>) {
     const res= await api.post('/transports', data)
 
     return res.data
