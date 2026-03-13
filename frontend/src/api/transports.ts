@@ -7,7 +7,7 @@ export async function fetchTransports(): Promise<TransportRequest[]> {
 }
 
 export async function createTransport(data: Partial<TransportRequest>) {
-    const res= await api.post('/transports', data)
+    const res= await api.post('/add-transport', data)
     return res.data
 }
 
