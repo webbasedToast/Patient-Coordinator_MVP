@@ -18,7 +18,6 @@ import {
 import "./TransportEditDialog.scss"
 
 const STATUS_OPTIONS = [
-    "OPEN",
     "ASSIGNED",
     "IN_PROGRESS",
     "CLOSED",
