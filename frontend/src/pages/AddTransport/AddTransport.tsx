@@ -59,9 +59,9 @@ export default function AddTransport() {
             return
         }
         createMutation.mutate({
-            pickup_location: pickup_location,
-            drop_off_location: drop_off_location,
-            priority: priority,
+            pickup_location: pickup_location as "STATION" | "PATIENT_ROOM" | "OP" | "EMERGENCY_ROOM",
+            drop_off_location: drop_off_location as "STATION" | "PATIENT_ROOM" | "OP" | "EMERGENCY_ROOM",
+            priority: priority as 0 | 1 | 2 | 3,
             assigned_timeframe: assigned_timeframe.toISOString()
         })
     }
@@ -120,7 +120,7 @@ export default function AddTransport() {
                 <DatePicker
                     label="Assigned Date"
                     value={assigned_timeframe}
-                    onChange={(newValue) => setAssignedTimeframe(newValue)}
+                    onChange={(newValue) => setAssignedTimeframe(newValue || dayjs())}
                     format="DD/MM/YYYY"
                 />
 

@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 
 import {updateTransportStatus} from "../../api/transports.ts";
+import type {TransportRequest} from "../../types/TransportRequest.ts";
 import {
     Button,
     Dialog,
@@ -24,11 +25,17 @@ const STATUS_OPTIONS = [
     "CANCELLED"
 ];
 
+interface Props {
+    transport: TransportRequest | null;
+    open: boolean;
+    onClose: () => void;
+}
+
 export default function TransportEditDialog({
     transport,
     open,
     onClose
-}) {
+}: Props) {
 
     const queryClient = useQueryClient()
     const [status, setStatus] = useState("")

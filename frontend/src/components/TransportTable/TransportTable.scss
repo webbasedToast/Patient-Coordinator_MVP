@@ -1,6 +1,5 @@
 .transport-table-container {
-    display: flex;
-    max-height: calc(100vh - 200px);
+    width: 100%;
     border-radius: 8px;
     
     &::-webkit-scrollbar {
@@ -23,7 +22,8 @@
     }
 
     table {
-        width: auto;
+        width: 100%;
+        min-width: 900px;
         table-layout: auto;
     }
 

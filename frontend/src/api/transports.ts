@@ -1,8 +1,28 @@
 import { api } from "./client.ts";
 import type {TransportRequest} from "../types/TransportRequest.ts";
 
-export async function fetchTransports(): Promise<TransportRequest[]> {
-    const res = await api.get('/transports');
+export interface PaginatedTransports {
+    data: TransportRequest[];
+    total: number;
+    page: number;
+    limit: number;
+    total_pages: number;
+}
+
+export async function fetchTransports(
+    page: number = 1,
+    limit: number = 10,
+    sortBy?: string,
+    sortOrder?: string
+): Promise<PaginatedTransports> {
+    const params = new URLSearchParams({
+        page: page.toString(),
+        limit: limit.toString(),
+    });
+    if (sortBy) params.append('sort_by', sortBy);
+    if (sortOrder) params.append('sort_order', sortOrder);
+
+    const res = await api.get(`/transports?${params}`);
     return res.data;
 }
 

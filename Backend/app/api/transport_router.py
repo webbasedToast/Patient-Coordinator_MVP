@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 
 from schemas.transport_schemas import *
 from services.transport_service import *
@@ -6,8 +6,13 @@ from services.transport_service import *
 router = APIRouter(tags=["transports"])
 
 @router.get("/transports")
-def list_all_transports():
-    return get_all_transports()
+def list_all_transports(
+    page: int = Query(1, ge=1),
+    limit: int = Query(10, ge=1, le=100),
+    sort_by: str = Query(None),
+    sort_order: str = Query("asc", regex="^(asc|desc)$")
+):
+    return get_transports_paginated(page, limit, sort_by, sort_order)
 
 @router.get("/transports/{transport_id}")
 def get_transport(transport_id: UUID):

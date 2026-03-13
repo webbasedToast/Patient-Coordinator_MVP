@@ -44,7 +44,7 @@ export default function Layout() {
             <AppBar position="fixed" className="headband">
                 <Toolbar className="headband-toolbar">
                     <Typography
-                        variant="h6"
+                        variant="h5"
                         className="headband-title"
                         onClick={() => navigate("/")}
                     >
@@ -53,7 +53,7 @@ export default function Layout() {
                     <Button
                         color="inherit"
                         className="login-button"
-                        startIcon={isLoggedIn ? <LogoutIcon /> : <LoginIcon />}
+                        endIcon={isLoggedIn ? <LogoutIcon /> : <LoginIcon />}
                         onClick={handleLogin}
                     >
                         {isLoggedIn ? `Logout ${role}` : "Login"}
@@ -74,11 +74,13 @@ export default function Layout() {
                         width: DRAWER_WIDTH,
                         height: '100vh',
                         boxSizing: 'border-box',
+                        backgroundColor: '#ffffff',
                     },
                 }}
             >
                 <Toolbar />
                 <Box className="navbar-content">
+                    <Typography className="navbar-header">Navigation</Typography>
                     <List>
                         <ListItem disablePadding>
                             <ListItemButton onClick={() => navigate("/transports")}>

@@ -4,10 +4,11 @@ import "./Dashboard.scss";
 import {Container} from "@mui/material";
 import TransportTable from "../../components/TransportTable/TransportTable.tsx";
 import {useAuth} from "../../contexts/AuthContext.tsx";
+import type {TransportRequest} from "../../types/TransportRequest.ts";
 
 export default function Dashboard() {
     const {role} = useAuth();
-    const [editingTransport, setEditingTransport] = useState(null)
+    const [editingTransport, setEditingTransport] = useState<TransportRequest | null>(null)
 
     const canEdit = role === 'admin' || role === 'dienstleister';
 

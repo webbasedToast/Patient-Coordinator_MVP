@@ -6,7 +6,7 @@
             "drop_off_location": "PATIENT_ROOM",
             "assigned_timeframe": "2026-03-11T16:38:28.669000+00:00",
             "priority": 0,
-            "status": "OPEN"
+            "status": "CLOSED"
         },
         {
             "id": "ae13c8fc-e2aa-45d1-9a69-d3217897cf31",
@@ -166,6 +166,22 @@
             "drop_off_location": "OP",
             "assigned_timeframe": "2026-03-13T12:20:58.035000+00:00",
             "priority": 2,
+            "status": "OPEN"
+        },
+        {
+            "id": "2d1d243c-9034-46e6-be54-c7665a6ac869",
+            "pickup_location": "PATIENT_ROOM",
+            "drop_off_location": "EMERGENCY_ROOM",
+            "assigned_timeframe": "2026-12-17T12:43:41.795000+00:00",
+            "priority": 2,
+            "status": "OPEN"
+        },
+        {
+            "id": "3c09e894-8d54-45e7-834c-70d492746c53",
+            "pickup_location": "OP",
+            "drop_off_location": "STATION",
+            "assigned_timeframe": "2026-03-13T12:56:46.061000+00:00",
+            "priority": 1,
             "status": "OPEN"
         }
     ]
