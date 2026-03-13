@@ -1,0 +1,138 @@
+import {useState} from "react";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {useNavigate} from "react-router-dom";
+import dayjs from "dayjs";
+import {createTransport} from "../../api/transports.ts";
+import {
+    Box,
+    Button,
+    FormControl,
+    FormControlLabel,
+    MenuItem,
+    Paper,
+    Radio,
+    RadioGroup,
+    Select,
+    Typography
+} from "@mui/material";
+
+import "./AddTransport.scss";
+import {DatePicker} from "@mui/x-date-pickers";
+
+const LOCATION_OPTIONS = [
+    "STATION",
+    "PATIENT_ROOM",
+    "OP",
+    "EMERGENCY_ROOM"
+];
+
+const PRIORITY_OPTIONS = [
+    {label: "LOW", value: 0},
+    {label: "MEDIUM", value: 1},
+    {label: "HIGH", value: 2},
+    {label: "URGENT", value: 3}
+];
+
+export default function AddTransport() {
+    const navigate = useNavigate()
+    const queryClient = useQueryClient()
+    const [pickup_location, setPickupLocation] = useState("")
+    const [drop_off_location, setDropOffLocation] = useState("")
+    const [priority, setPriority] = useState(0)
+    const [assigned_timeframe, setAssignedTimeframe] = useState(dayjs())
+
+    const createMutation = useMutation({
+        mutationFn: createTransport,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["transports"] })
+            navigate("/transports")
+        },
+        onError: (error) => {
+            console.error("Failed to create transport:", error)
+            alert("Failed to create transport. Please check all fields.")
+        }
+    })
+
+    function handleSubmit() {
+        if (!pickup_location || !drop_off_location) {
+            alert("Please select both pickup and drop off locations")
+            return
+        }
+        createMutation.mutate({
+            pickup_location: pickup_location,
+            drop_off_location: drop_off_location,
+            priority: priority,
+            assigned_timeframe: assigned_timeframe.toISOString()
+        })
+    }
+
+    return (
+        <Box className="add-transport">
+            <Paper className="form-container">
+                <Typography variant="h5" className="form-title">
+                    Create new Transport
+                </Typography>
+
+                <FormControl fullWidth required>
+                    <Select
+                        value={pickup_location}
+                        displayEmpty
+                        onChange={event => setPickupLocation(event.target.value)}
+                    >
+                        <MenuItem value="" disabled>Pickup Location</MenuItem>
+                        {LOCATION_OPTIONS.map(l =>
+                            <MenuItem key={l} value={l}>{l}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth required>
+                    <Select
+                        value={drop_off_location}
+                        displayEmpty
+                        onChange={event => setDropOffLocation(event.target.value)}
+                    >
+                        <MenuItem value="" disabled>Drop Off Location</MenuItem>
+                        {LOCATION_OPTIONS.map(l =>
+                            <MenuItem key={l} value={l}>{l}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <Typography className="priority-label">Priority</Typography>
+                    <RadioGroup
+                        value={priority}
+                        onChange={event => setPriority(Number(event.target.value))}
+                        row
+                    >
+                        {PRIORITY_OPTIONS.map(p =>
+                            <FormControlLabel
+                                key={p.value}
+                                value={p.value}
+                                control={<Radio/>}
+                                label={p.label}
+                            />
+                        )}
+                    </RadioGroup>
+                </FormControl>
+
+                <DatePicker
+                    label="Assigned Date"
+                    value={assigned_timeframe}
+                    onChange={(newValue) => setAssignedTimeframe(newValue)}
+                    format="DD/MM/YYYY"
+                />
+
+                <Box className="form-actions">
+                    <Button variant="outlined" onClick={() => navigate("/transports")}>
+                        Cancel
+                    </Button>
+                    <Button variant="contained" onClick={handleSubmit}>
+                        Create Transport
+                    </Button>
+                </Box>
+            </Paper>
+        </Box>
+    )
+}
