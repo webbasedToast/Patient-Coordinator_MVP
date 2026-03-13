@@ -65,10 +65,14 @@ export default function Layout() {
                 className="navbar"
                 variant="permanent"
                 sx={{
+                    position: 'relative',
                     width: DRAWER_WIDTH,
                     flexShrink: 0,
+                    height: '100vh',
                     '& .MuiDrawer-paper': {
+                        position: 'relative',
                         width: DRAWER_WIDTH,
+                        height: '100vh',
                         boxSizing: 'border-box',
                     },
                 }}
