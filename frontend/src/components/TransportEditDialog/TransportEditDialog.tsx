@@ -32,27 +32,37 @@ export default function TransportEditDialog({
 
     const queryClient = useQueryClient()
     const [status, setStatus] = useState("")
+    const [initialLoad, setInitialLoad] = useState(false)
 
    useEffect(() => {
        if (transport) {
            setStatus(transport.status)
+           setInitialLoad(true)
        }
    }, [transport])
 
     const updateTransport = useMutation({
-        mutationFn: () => updateTransportStatus(transport.id, status),
+        mutationFn: ({ id, status }: { id: string; status: string }) => 
+            updateTransportStatus(id, status),
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ["transports"]})
+            setInitialLoad(false)
             onClose()
+        },
+        onError: (error) => {
+            console.error("Failed to update transport status:", error)
+            setInitialLoad(false)
         }
     })
 
     function handleSubmit() {
-        updateTransport.mutate()
+        if (transport?.id && status && initialLoad) {
+            updateTransport.mutate({ id: transport.id, status })
+        }
     }
 
     return (
-        <Dialog open={open} onClose={onClose}>
+        <Dialog className="transportEditDialog" open={open} onClose={onClose}>
             <DialogTitle>Edit Transport Status</DialogTitle>
             <DialogContent>
                 <FormControl fullWidth>
@@ -74,5 +84,5 @@ export default function TransportEditDialog({
                 <Button variant="contained" onClick={handleSubmit}>Confirm</Button>
             </DialogActions>
         </Dialog>
-  )
+    )
 }

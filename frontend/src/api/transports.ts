@@ -12,6 +12,6 @@ export async function createTransport(data: Partial<TransportRequest>) {
 }
 
 export async function updateTransportStatus(id: string, status: string) {
-    const response = await api.patch(`/transports/${id}/status`, {status})
+    const response = await api.put(`/transports/${id}/status`, { status })
     return response.data
 }

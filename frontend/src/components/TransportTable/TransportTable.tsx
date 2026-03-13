@@ -1,9 +1,22 @@
 import type {TransportRequest} from "../../types/TransportRequest.ts";
 import {Chip, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 
 import {fetchTransports} from "../../api/transports.ts";
 import {useQuery} from "@tanstack/react-query";
+import {useState, useMemo} from "react";
+import "./TransportTable.scss";
+
+type SortKey = 'priority' | 'status' | 'assigned_timeframe';
+type SortDirection = 'asc' | 'desc' | null;
+
+interface SortConfig {
+    key: SortKey | null;
+    direction: SortDirection;
+}
 
 interface Props {
     onEdit:  (transport: TransportRequest) => void
@@ -29,22 +42,94 @@ export default function TransportTable({onEdit}: Props) {
         queryFn: fetchTransports
     })
 
+    const [sortConfig, setSortConfig] = useState<SortConfig>({ key: null, direction: null });
+
+    const handleSort = (key: SortKey) => {
+        setSortConfig((current) => {
+            if (current.key !== key) {
+                return { key, direction: 'asc' };
+            }
+            if (current.direction === 'asc') {
+                return { key, direction: 'desc' };
+            }
+            return { key: null, direction: null };
+        });
+    };
+
+    const getSortIcon = (key: SortKey) => {
+        if (sortConfig.key !== key) {
+            return <UnfoldMoreIcon fontSize="small" className="sort-icon inactive" />;
+        }
+        if (sortConfig.direction === 'asc') {
+            return <ArrowUpwardIcon fontSize="small" className="sort-icon active" />;
+        }
+        return <ArrowDownwardIcon fontSize="small" className="sort-icon active" />;
+    };
+
+    const sortedTransports = useMemo(() => {
+        if (!sortConfig.key || !sortConfig.direction) {
+            return transports;
+        }
+        return [...transports].sort((a, b) => {
+            let aVal: string | number;
+            let bVal: string | number;
+            
+            if (sortConfig.key === 'priority') {
+                aVal = a.priority;
+                bVal = b.priority;
+            } else if (sortConfig.key === 'status') {
+                aVal = a.status;
+                bVal = b.status;
+            } else {
+                aVal = new Date(a.assigned_timeframe).getTime();
+                bVal = new Date(b.assigned_timeframe).getTime();
+            }
+
+            if (aVal < bVal) return sortConfig.direction === 'asc' ? -1 : 1;
+            if (aVal > bVal) return sortConfig.direction === 'asc' ? 1 : -1;
+            return 0;
+        });
+    }, [transports, sortConfig]);
+
     return (
-        <TableContainer component={Paper}>
-            <Table size="small">
+        <TableContainer 
+            component={Paper} 
+            className="transport-table-container"
+            sx={{ 
+                overflowX: 'auto',
+                maxHeight: 'calc(100vh - 200px)',
+                width: '100%'
+            }}
+        >
+            <Table size="small" stickyHeader>
                 <TableHead>
                     <TableRow>
                         <TableCell>ID</TableCell>
                         <TableCell>Pickup</TableCell>
                         <TableCell>Drop off</TableCell>
-                        <TableCell>Assigned Date</TableCell>
-                        <TableCell>Priority</TableCell>
-                        <TableCell>Status</TableCell>
+                        <TableCell 
+                            className="sortable-header"
+                            onClick={() => handleSort('assigned_timeframe')}
+                        >
+                            Assigned Date {getSortIcon('assigned_timeframe')}
+                        </TableCell>
+                        <TableCell 
+                            className="sortable-header"
+                            onClick={() => handleSort('priority')}
+                        >
+                            Priority {getSortIcon('priority')}
+                        </TableCell>
+                        <TableCell 
+                            className="sortable-header"
+                            onClick={() => handleSort('status')}
+                        >
+                            Status {getSortIcon('status')}
+                        </TableCell>
                         <TableCell align="right"/>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {transports.map((t) => (
+                    {sortedTransports.map((t) => (
                         <TableRow key={t.id} hover>
                             <TableCell>{t.id}</TableCell>
                             <TableCell>{t.pickup_location}</TableCell>
