@@ -1,0 +1,36 @@
+.layout {
+    min-height: 100vh;
+
+    .headband {
+        background-color: #1976d2;
+        z-index: 1201;
+    }
+
+    .navbar {
+        background-color: #f5f5f5;
+        border-right: 1px solid #e0e0e0;
+
+        .navbar-content {
+            padding-top: 8px;
+        }
+
+        .MuiListItemButton-root {
+            &:hover {
+                background-color: #e8e8e8;
+            }
+
+            &.Mui-selected {
+                background-color: #e3f2fd;
+            }
+        }
+    }
+
+    .main-content {
+        margin-left: 240px;
+        padding: 16px;
+        background-color: #fafafa;
+        min-height: calc(100vh - 64px);
+        width: calc(100% - 240px);
+        box-sizing: border-box;
+    }
+}

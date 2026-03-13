@@ -37,7 +37,6 @@ const PRIORITY_OPTIONS = [
 export default function TransportCreateDialog({ open, onClose }) {
 
     const queryClient = useQueryClient()
-    const [status, setStatus] = useState("OPEN")
     const [pickup_location, setPickupLocation] = useState("")
     const [drop_off_location, setDropOffLocation] = useState("")
     const [priority, setPriority] = useState(0)
@@ -92,7 +91,7 @@ export default function TransportCreateDialog({ open, onClose }) {
                 </FormControl>
 
                 <FormControl fullWidth>
-                    <InputLabel>Priority</InputLabel>
+                    <DialogTitle className="priority-label">Priority</DialogTitle>
                     <RadioGroup
                         value={priority}
                         onChange={event => setPriority(Number(event.target.value))}
@@ -112,6 +111,7 @@ export default function TransportCreateDialog({ open, onClose }) {
                     label="Assigned Date"
                     value={assigned_timeframe}
                     onChange={(newValue) => setAssignedTimeframe(newValue)}
+                    format="DD/MM/YYYY"
                 />
 
             </DialogContent>

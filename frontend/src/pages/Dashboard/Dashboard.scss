@@ -1,9 +1,15 @@
 .dashboard {
-
-  margin-top: 40px;
+  max-width: none;
+  width: 100%;
+  margin: 40px 0 0 0;
+  padding: 0 16px;
 
   button {
+    background-color: #004b5a;
     margin-top: 20px;
     margin-bottom: 30px;
+  }
+  button:hover {
+    background-color: #82bc00;
   }
 }

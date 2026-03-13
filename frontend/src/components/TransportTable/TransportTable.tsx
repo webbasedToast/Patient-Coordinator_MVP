@@ -1,9 +1,9 @@
 import type {TransportRequest} from "../../types/TransportRequest.ts";
 import {Chip, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import {fetchTransports} from "../../api/transports.ts";
 import {useQuery} from "@tanstack/react-query";
@@ -57,13 +57,17 @@ export default function TransportTable({onEdit}: Props) {
     };
 
     const getSortIcon = (key: SortKey) => {
-        if (sortConfig.key !== key) {
+        const isActive = sortConfig.key === key;
+        
+        if (!isActive) {
             return <UnfoldMoreIcon fontSize="small" className="sort-icon inactive" />;
         }
+        
         if (sortConfig.direction === 'asc') {
-            return <ArrowUpwardIcon fontSize="small" className="sort-icon active" />;
+            return <ExpandLessIcon fontSize="small" className="sort-icon active" />;
         }
-        return <ArrowDownwardIcon fontSize="small" className="sort-icon active" />;
+        
+        return <ExpandMoreIcon fontSize="small" className="sort-icon active" />;
     };
 
     const sortedTransports = useMemo(() => {
