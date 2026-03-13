@@ -4,6 +4,20 @@
     .headband {
         background-color: #1976d2;
         z-index: 1201;
+
+        .headband-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .headband-title {
+            flex-grow: 1;
+        }
+
+        .login-button {
+            margin-left: auto;
+        }
     }
 
     .navbar {

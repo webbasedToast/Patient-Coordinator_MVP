@@ -1,4 +1,4 @@
-import {Outlet} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import {
     AppBar,
     Box,
@@ -13,15 +13,21 @@ import {
 } from "@mui/material";
 import "./Layout.scss";
 import ListIcon from "@mui/icons-material/List";
+import AddIcon from "@mui/icons-material/add";
 
 const DRAWER_WIDTH = 240;
 
 export default function Layout() {
+    const navigate = useNavigate();
     return (
         <Box className="layout">
             <AppBar position="fixed" className="headband">
-                <Toolbar>
-                    <Typography variant="h6">
+                <Toolbar className="headband-toolbar">
+                    <Typography
+                        variant="h6"
+                        className="headband-title"
+                        onClick={() => navigate("/")}
+                    >
                         Patient Transportation Coordination Service
                     </Typography>
                 </Toolbar>
@@ -43,11 +49,20 @@ export default function Layout() {
                 <Box className="navbar-content">
                     <List>
                         <ListItem disablePadding>
-                            <ListItemButton component="a" href="/transports">
+                            <ListItemButton onClick={() => navigate("/transports")}>
                                 <ListItemIcon>
                                     <ListIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Transports" />
+                            </ListItemButton>
+                        </ListItem>
+
+                        <ListItem disablePadding>
+                            <ListItemButton onClick={() => navigate("/add-transport")}>
+                                <ListItemIcon>
+                                    <AddIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Add new Transport" />
                             </ListItemButton>
                         </ListItem>
                     </List>

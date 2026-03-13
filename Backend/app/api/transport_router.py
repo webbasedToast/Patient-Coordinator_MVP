@@ -3,7 +3,6 @@ from fastapi import APIRouter, HTTPException
 from schemas.transport_schemas import *
 from services.transport_service import *
 
-#router = APIRouter(prefix="/transports", tags=["transports"])
 router = APIRouter(tags=["transports"])
 
 @router.get("/transports")
