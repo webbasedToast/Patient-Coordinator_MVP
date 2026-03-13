@@ -19,7 +19,8 @@ interface SortConfig {
 }
 
 interface Props {
-    onEdit:  (transport: TransportRequest) => void
+    onEdit?: (transport: TransportRequest) => void;
+    canEdit?: boolean;
 }
 
 function formatDate(datetime: string) {
@@ -35,7 +36,7 @@ function priorityLabel(priority: number) {
     return ["Low", "Medium", "High", "Urgent"][priority] ?? "-";
 }
 
-export default function TransportTable({onEdit}: Props) {
+export default function TransportTable({onEdit, canEdit = false}: Props) {
 
     const {data: transports = []} = useQuery({
         queryKey: ["transports"],
@@ -105,46 +106,40 @@ export default function TransportTable({onEdit}: Props) {
                 width: '100%'
             }}
         >
-            <Table size="small" stickyHeader>
+            <Table size="small" stickyHeader className="transport-table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Pickup</TableCell>
-                        <TableCell>Drop off</TableCell>
-                        <TableCell 
-                            className="sortable-header"
-                            onClick={() => handleSort('assigned_timeframe')}
-                        >
+                        <TableCell className="col-id">ID</TableCell>
+                        <TableCell className="col-pickup">Pickup</TableCell>
+                        <TableCell className="col-dropoff">Drop off</TableCell>
+                        <TableCell className="col-date sortable-header" onClick={() => handleSort('assigned_timeframe')}>
                             Assigned Date {getSortIcon('assigned_timeframe')}
                         </TableCell>
-                        <TableCell 
-                            className="sortable-header"
-                            onClick={() => handleSort('priority')}
-                        >
+                        <TableCell className="col-priority sortable-header" onClick={() => handleSort('priority')}>
                             Priority {getSortIcon('priority')}
                         </TableCell>
-                        <TableCell 
-                            className="sortable-header"
-                            onClick={() => handleSort('status')}
-                        >
+                        <TableCell className="col-status sortable-header" onClick={() => handleSort('status')}>
                             Status {getSortIcon('status')}
                         </TableCell>
-                        <TableCell align="right"/>
+                        <TableCell className="col-actions" align="right">Actions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {sortedTransports.map((t) => (
                         <TableRow key={t.id} hover>
-                            <TableCell>{t.id}</TableCell>
-                            <TableCell>{t.pickup_location}</TableCell>
-                            <TableCell>{t.drop_off_location}</TableCell>
-                            <TableCell>{formatDate(t.assigned_timeframe)}</TableCell>
-                            <TableCell>{priorityLabel(t.priority)}</TableCell>
-                            <TableCell>
+                            <TableCell className="col-id">{t.id}</TableCell>
+                            <TableCell className="col-pickup">{t.pickup_location}</TableCell>
+                            <TableCell className="col-dropoff">{t.drop_off_location}</TableCell>
+                            <TableCell className="col-date">{formatDate(t.assigned_timeframe)}</TableCell>
+                            <TableCell className="col-priority">{priorityLabel(t.priority)}</TableCell>
+                            <TableCell className="col-status">
                                 <Chip label={t.status} size="small"/>
                             </TableCell>
-                            <TableCell align="right">
-                                <IconButton onClick={() => onEdit(t)}>
+                            <TableCell className="col-actions" align="right">
+                                <IconButton 
+                                    onClick={() => canEdit && onEdit?.(t)}
+                                    disabled={!canEdit}
+                                >
                                     <EditIcon />
                                 </IconButton>
                             </TableCell>

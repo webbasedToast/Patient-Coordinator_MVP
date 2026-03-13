@@ -25,12 +25,44 @@
     }
 
     table {
-        min-width: 800px;
+        width: 100%;
+        min-width: 900px;
+        table-layout: fixed;
     }
 
     .MuiTableCell-head {
         background-color: #f5f5f5;
         font-weight: 600;
+    }
+
+    .col-id {
+        width: 220px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .col-pickup {
+        width: 140px;
+    }
+
+    .col-dropoff {
+        width: 140px;
+    }
+
+    .col-date {
+        width: 130px;
+    }
+
+    .col-priority {
+        width: 100px;
+    }
+
+    .col-status {
+        width: 130px;
+    }
+
+    .col-actions {
+        width: 80px;
     }
 
     .sortable-header {
