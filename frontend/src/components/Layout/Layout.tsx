@@ -57,7 +57,6 @@ export default function Layout() {
                         endIcon={isLoggedIn ? <LogoutIcon /> : <LoginIcon />}
                         onClick={handleLogin}
                     >
-                        {/*{isLoggedIn ? "Logout" : "Login"}*/}
                     </Button>
                 </Toolbar>
             </AppBar>

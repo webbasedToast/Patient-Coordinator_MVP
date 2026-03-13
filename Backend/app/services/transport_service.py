@@ -33,7 +33,6 @@ def get_transports_paginated(page: int = 1, limit: int = 10, sort_by: str = None
         "total_pages": total_pages
     }
 
-
 def get_transport_by_id(transport_id: str):
     data = load_transport_data()
 
@@ -63,7 +62,7 @@ def create_transport_request(pickup_location, drop_off_location, assigned_timefr
         "drop_off_location": drop_off_location,
         "assigned_timeframe": assigned_timeframe.isoformat(),
         "priority": priority.value,
-        "status": Status.OPEN.value,
+        "status": Status.ASSIGNED.value,
         "assigned_service": assigned_service,
     }
     data["transports"].append(new_transport_request)
