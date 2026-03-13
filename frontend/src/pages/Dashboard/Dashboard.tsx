@@ -10,7 +10,7 @@ export default function Dashboard() {
     const {role} = useAuth();
     const [editingTransport, setEditingTransport] = useState<TransportRequest | null>(null)
 
-    const canEdit = role === 'admin' || role === 'dienstleister';
+    const canEdit = role === 'ADMIN' || role === 'BASIC_USER';
 
     return (
         <Container className="dashboard">

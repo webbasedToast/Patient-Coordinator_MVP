@@ -1,8 +1,9 @@
 import {useState} from "react";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {useNavigate} from "react-router-dom";
 import dayjs from "dayjs";
 import {createTransport} from "../../api/transports.ts";
+import {fetchBasicUsers, type User} from "../../api/users.ts";
 import {
     Box,
     Button,
@@ -40,6 +41,12 @@ export default function AddTransport() {
     const [drop_off_location, setDropOffLocation] = useState("")
     const [priority, setPriority] = useState(0)
     const [assigned_timeframe, setAssignedTimeframe] = useState(dayjs())
+    const [assigned_service, setAssignedService] = useState("")
+
+    const {data: basicUsers = []} = useQuery({
+        queryKey: ["basicUsers"],
+        queryFn: fetchBasicUsers
+    })
 
     const createMutation = useMutation({
         mutationFn: createTransport,
@@ -54,15 +61,16 @@ export default function AddTransport() {
     })
 
     function handleSubmit() {
-        if (!pickup_location || !drop_off_location) {
-            alert("Please select both pickup and drop off locations")
+        if (!pickup_location || !drop_off_location || !assigned_service) {
+            alert("Please select all required fields")
             return
         }
         createMutation.mutate({
             pickup_location: pickup_location as "STATION" | "PATIENT_ROOM" | "OP" | "EMERGENCY_ROOM",
             drop_off_location: drop_off_location as "STATION" | "PATIENT_ROOM" | "OP" | "EMERGENCY_ROOM",
             priority: priority as 0 | 1 | 2 | 3,
-            assigned_timeframe: assigned_timeframe.toISOString()
+            assigned_timeframe: assigned_timeframe.toISOString(),
+            assigned_service: assigned_service
         })
     }
 
@@ -99,6 +107,19 @@ export default function AddTransport() {
                     </Select>
                 </FormControl>
 
+                <FormControl fullWidth required>
+                    <Select
+                        value={assigned_service}
+                        displayEmpty
+                        onChange={event => setAssignedService(event.target.value)}
+                    >
+                        <MenuItem value="" disabled>Assigned Service (User)</MenuItem>
+                        {basicUsers.map((user: User) =>
+                            <MenuItem key={user.id} value={user.user_name}>{user.user_name}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
+
                 <FormControl fullWidth>
                     <Typography className="priority-label">Priority</Typography>
                     <RadioGroup
@@ -118,7 +139,7 @@ export default function AddTransport() {
                 </FormControl>
 
                 <DatePicker
-                    label="Assigned Date"
+                    label="Due Date"
                     value={assigned_timeframe}
                     onChange={(newValue) => setAssignedTimeframe(newValue || dayjs())}
                     format="DD/MM/YYYY"

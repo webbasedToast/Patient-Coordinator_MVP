@@ -13,7 +13,8 @@ export async function fetchTransports(
     page: number = 1,
     limit: number = 10,
     sortBy?: string,
-    sortOrder?: string
+    sortOrder?: string,
+    assignedService?: string
 ): Promise<PaginatedTransports> {
     const params = new URLSearchParams({
         page: page.toString(),
@@ -21,13 +22,14 @@ export async function fetchTransports(
     });
     if (sortBy) params.append('sort_by', sortBy);
     if (sortOrder) params.append('sort_order', sortOrder);
+    if (assignedService) params.append('assigned_service', assignedService);
 
     const res = await api.get(`/transports?${params}`);
     return res.data;
 }
 
 export async function createTransport(data: Partial<TransportRequest>) {
-    const res= await api.post('/add-transport', data)
+    const res= await api.post('/transports/add-transport', data)
     return res.data
 }
 

@@ -6,7 +6,8 @@
             "drop_off_location": "PATIENT_ROOM",
             "assigned_timeframe": "2026-03-11T16:38:28.669000+00:00",
             "priority": 0,
-            "status": "CLOSED"
+            "status": "CLOSED",
+            "assigned_service": "Viamed"
         },
         {
             "id": "ae13c8fc-e2aa-45d1-9a69-d3217897cf31",
@@ -14,7 +15,8 @@
             "drop_off_location": "PATIENT_ROOM",
             "assigned_timeframe": "2026-03-08T16:38:28.669000+00:00",
             "priority": 0,
-            "status": "CANCELLED"
+            "status": "ASSIGNED",
+            "assigned_service": "DRK"
         },
         {
             "id": "64977295-80db-4455-a70b-7b02438ea061",
@@ -22,7 +24,8 @@
             "drop_off_location": "STATION",
             "assigned_timeframe": "2026-04-08T16:58:28.689000+00:00",
             "priority": 0,
-            "status": "CLOSED"
+            "status": "CLOSED",
+            "assigned_service": "ASB"
         },
         {
             "id": "c281e5f8-79e7-48da-b2fa-39a56bc9ef36",
@@ -30,7 +33,8 @@
             "drop_off_location": "OP",
             "assigned_timeframe": "2026-03-12T14:42:34.239000+00:00",
             "priority": 1,
-            "status": "CLOSED"
+            "status": "CLOSED",
+            "assigned_service": "Viamed"
         },
         {
             "id": "a4c656cc-4293-4ffe-bebc-181857427110",
@@ -38,7 +42,8 @@
             "drop_off_location": "OP",
             "assigned_timeframe": "2026-03-13T14:42:34.239000+00:00",
             "priority": 3,
-            "status": "ASSIGNED"
+            "status": "ASSIGNED",
+            "assigned_service": "DRK"
         },
         {
             "id": "0fdbdb0a-5fb0-45ae-8ebb-71b660e0418f",
@@ -46,7 +51,8 @@
             "drop_off_location": "PATIENT_ROOM",
             "assigned_timeframe": "2026-03-03T07:28:59.705000+00:00",
             "priority": 1,
-            "status": "ASSIGNED"
+            "status": "ASSIGNED",
+            "assigned_service": "ASB"
         },
         {
             "id": "3f5b3f3d-065a-4e78-a7b0-58cb79c121ef",
@@ -54,7 +60,8 @@
             "drop_off_location": "EMERGENCY_ROOM",
             "assigned_timeframe": "2026-01-06T07:28:59.705000+00:00",
             "priority": 3,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "Viamed"
         },
         {
             "id": "21a0f558-2fd0-4852-9126-80943a7a3451",
@@ -62,7 +69,8 @@
             "drop_off_location": "PATIENT_ROOM",
             "assigned_timeframe": "2026-07-22T06:58:43.083000+00:00",
             "priority": 2,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "DRK"
         },
         {
             "id": "c8c85db8-faa7-4012-b3cc-b03b42d29583",
@@ -70,7 +78,8 @@
             "drop_off_location": "STATION",
             "assigned_timeframe": "2026-03-17T08:26:20.451000+00:00",
             "priority": 1,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "ASB"
         },
         {
             "id": "b13c5736-67d6-4c54-9a7f-f892bd7f414e",
@@ -78,7 +87,8 @@
             "drop_off_location": "EMERGENCY_ROOM",
             "assigned_timeframe": "2026-03-13T08:33:51.466000+00:00",
             "priority": 3,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "Viamed"
         },
         {
             "id": "00b6d472-0c27-49d8-bbf9-b876f2d9d2e3",
@@ -86,7 +96,8 @@
             "drop_off_location": "PATIENT_ROOM",
             "assigned_timeframe": "2026-01-01T09:40:57.020000+00:00",
             "priority": 0,
-            "status": "CANCELLED"
+            "status": "CANCELLED",
+            "assigned_service": "DRK"
         },
         {
             "id": "acb9502e-dc58-40f3-93d6-63e17276802f",
@@ -94,7 +105,8 @@
             "drop_off_location": "PATIENT_ROOM",
             "assigned_timeframe": "2026-03-13T10:26:08.427000+00:00",
             "priority": 1,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "ASB"
         },
         {
             "id": "e30b9d64-a145-489a-9613-a34561353597",
@@ -102,7 +114,8 @@
             "drop_off_location": "STATION",
             "assigned_timeframe": "2026-05-07T09:26:16.064000+00:00",
             "priority": 2,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "Viamed"
         },
         {
             "id": "caef6c9c-5a31-4780-a39b-1cbfb67fb173",
@@ -110,7 +123,8 @@
             "drop_off_location": "EMERGENCY_ROOM",
             "assigned_timeframe": "2026-01-01T10:28:26.240000+00:00",
             "priority": 3,
-            "status": "CLOSED"
+            "status": "CLOSED",
+            "assigned_service": "DRK"
         },
         {
             "id": "b221e00b-e395-404c-9a90-65eeb19c0429",
@@ -118,7 +132,8 @@
             "drop_off_location": "STATION",
             "assigned_timeframe": "2026-09-10T09:29:25.662000+00:00",
             "priority": 1,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "ASB"
         },
         {
             "id": "5d2037ba-696c-4a72-95f5-45575190721d",
@@ -126,7 +141,8 @@
             "drop_off_location": "PATIENT_ROOM",
             "assigned_timeframe": "2026-10-23T09:30:32.903000+00:00",
             "priority": 1,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "Viamed"
         },
         {
             "id": "ec6ad6df-d3eb-4ddd-b85b-ebee00d016f8",
@@ -134,7 +150,8 @@
             "drop_off_location": "STATION",
             "assigned_timeframe": "2026-03-13T10:31:18.798000+00:00",
             "priority": 1,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "DRK"
         },
         {
             "id": "b44a1b4d-cf23-4f85-b093-55e20e4ab173",
@@ -142,7 +159,8 @@
             "drop_off_location": "PATIENT_ROOM",
             "assigned_timeframe": "2026-03-13T10:43:08.038000+00:00",
             "priority": 1,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "ASB"
         },
         {
             "id": "90ab3b6c-4afa-493a-816f-4752548bab5c",
@@ -150,7 +168,8 @@
             "drop_off_location": "OP",
             "assigned_timeframe": "2026-03-17T11:40:34.627000+00:00",
             "priority": 2,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "Viamed"
         },
         {
             "id": "fe5ac84d-797f-4df1-976d-c8fa668d462c",
@@ -158,7 +177,8 @@
             "drop_off_location": "EMERGENCY_ROOM",
             "assigned_timeframe": "2026-07-22T10:45:20.616000+00:00",
             "priority": 2,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "DRK"
         },
         {
             "id": "e184b0d5-7a78-46cf-b8ed-7d65312e360e",
@@ -166,7 +186,8 @@
             "drop_off_location": "OP",
             "assigned_timeframe": "2026-03-13T12:20:58.035000+00:00",
             "priority": 2,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "ASB"
         },
         {
             "id": "2d1d243c-9034-46e6-be54-c7665a6ac869",
@@ -174,7 +195,8 @@
             "drop_off_location": "EMERGENCY_ROOM",
             "assigned_timeframe": "2026-12-17T12:43:41.795000+00:00",
             "priority": 2,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "Viamed"
         },
         {
             "id": "3c09e894-8d54-45e7-834c-70d492746c53",
@@ -182,7 +204,44 @@
             "drop_off_location": "STATION",
             "assigned_timeframe": "2026-03-13T12:56:46.061000+00:00",
             "priority": 1,
-            "status": "OPEN"
+            "status": "OPEN",
+            "assigned_service": "DRK"
+        },
+        {
+            "id": "7b3cb041-6c3f-441d-8112-cc76492a2b82",
+            "pickup_location": "STATION",
+            "drop_off_location": "PATIENT_ROOM",
+            "assigned_timeframe": "2026-03-09T13:17:57.263000+00:00",
+            "priority": 1,
+            "status": "OPEN",
+            "assigned_service": "ASB"
+        },
+        {
+            "id": "3bca5096-df9c-4c2f-9825-1250f5d1b5ab",
+            "pickup_location": "STATION",
+            "drop_off_location": "PATIENT_ROOM",
+            "assigned_timeframe": "2026-03-20T10:00:00",
+            "priority": 0,
+            "status": "OPEN",
+            "assigned_service": "DRK"
+        },
+        {
+            "id": "05c48496-6bfe-4ee5-bce3-9f48c5de37f2",
+            "pickup_location": "STATION",
+            "drop_off_location": "PATIENT_ROOM",
+            "assigned_timeframe": "2026-03-13T14:20:09.354000+00:00",
+            "priority": 1,
+            "status": "IN_PROGRESS",
+            "assigned_service": "DRK"
+        },
+        {
+            "id": "a8cd9b0b-c9e0-4703-85f7-ef9b30cb27d5",
+            "pickup_location": "STATION",
+            "drop_off_location": "PATIENT_ROOM",
+            "assigned_timeframe": "2026-03-13T15:22:03.821000+00:00",
+            "priority": 0,
+            "status": "OPEN",
+            "assigned_service": "EVK West"
         }
     ]
 }

@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from api.transport_router import router as api_router
+from api.transport_router import router as transport_router
+from api.user_router import router as user_router
 
 app = FastAPI(
     title="Patient Coordinator API",
@@ -17,7 +18,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(api_router)
+app.include_router(transport_router)
+app.include_router(user_router)
 
 @app.get("/")
 async def root():

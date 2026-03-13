@@ -15,6 +15,7 @@ import {
 import "./Layout.scss";
 import ListIcon from "@mui/icons-material/List";
 import AddIcon from "@mui/icons-material/add";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from "@mui/icons-material/Logout";
 
@@ -33,7 +34,7 @@ export default function Layout() {
     const handleLogin = () => {
         if (isLoggedIn) {
             logout();
-            setLoginDialogOpen(true);
+            navigate("/");
         } else {
             setLoginDialogOpen(true);
         }
@@ -56,7 +57,7 @@ export default function Layout() {
                         endIcon={isLoggedIn ? <LogoutIcon /> : <LoginIcon />}
                         onClick={handleLogin}
                     >
-                        {isLoggedIn ? `Logout ${role}` : "Login"}
+                        {/*{isLoggedIn ? "Logout" : "Login"}*/}
                     </Button>
                 </Toolbar>
             </AppBar>
@@ -91,15 +92,25 @@ export default function Layout() {
                             </ListItemButton>
                         </ListItem>
 
-                        {role === "admin" && (
-                            <ListItem disablePadding>
-                                <ListItemButton onClick={() => navigate("/add-transport")}>
-                                    <ListItemIcon>
-                                        <AddIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Add new Transport" />
-                                </ListItemButton>
-                            </ListItem>
+                        {role === "ADMIN" && (
+                            <>
+                                <ListItem disablePadding>
+                                    <ListItemButton onClick={() => navigate("/add-transport")}>
+                                        <ListItemIcon>
+                                            <AddIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Add new Transport" />
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton onClick={() => navigate("/add-user")}>
+                                        <ListItemIcon>
+                                            <PersonAddIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Add new User" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </>
                         )}
                     </List>
                 </Box>

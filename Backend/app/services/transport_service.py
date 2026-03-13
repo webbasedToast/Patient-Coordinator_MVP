@@ -5,13 +5,16 @@ from storage.json_storage import *
 
 
 def get_all_transports():
-    data = load_data()
+    data = load_transport_data()
     return data["transports"]
 
 
-def get_transports_paginated(page: int = 1, limit: int = 10, sort_by: str = None, sort_order: str = "asc"):
-    data = load_data()
+def get_transports_paginated(page: int = 1, limit: int = 10, sort_by: str = None, sort_order: str = "asc", assigned_service: str = None):
+    data = load_transport_data()
     transports = data["transports"]
+
+    if assigned_service:
+        transports = [t for t in transports if t.get("assigned_service") == assigned_service]
 
     if sort_by:
         reverse = sort_order.lower() == "desc"
@@ -32,7 +35,7 @@ def get_transports_paginated(page: int = 1, limit: int = 10, sort_by: str = None
 
 
 def get_transport_by_id(transport_id: str):
-    data = load_data()
+    data = load_transport_data()
 
     for transport in data["transports"]:
         if transport["id"] == transport_id:
@@ -41,18 +44,18 @@ def get_transport_by_id(transport_id: str):
     return None
 
 def delete_transport(transport_id: str):
-    data = load_data()
+    data = load_transport_data()
 
     for t in data["transports"]:
         if t["id"] == transport_id:
             data["transports"].remove(t)
-            save_data(data)
+            save_transport_data(data)
             return t
 
     return None
 
-def create_transport_request(pickup_location, drop_off_location, assigned_timeframe, priority):
-    data = load_data()
+def create_transport_request(pickup_location, drop_off_location, assigned_timeframe, priority, assigned_service: str):
+    data = load_transport_data()
 
     new_transport_request = {
         "id": str(uuid.uuid4()),
@@ -61,21 +64,21 @@ def create_transport_request(pickup_location, drop_off_location, assigned_timefr
         "assigned_timeframe": assigned_timeframe.isoformat(),
         "priority": priority.value,
         "status": Status.OPEN.value,
+        "assigned_service": assigned_service,
     }
     data["transports"].append(new_transport_request)
-    save_data(data)
+    save_transport_data(data)
 
     return new_transport_request
 
 def update_transport_request(transport_id: str, status):
-
-    data = load_data()
+    data = load_transport_data()
 
     for t in data["transports"]:
         if t["id"] == transport_id:
             t["status"] = status.value
 
-            save_data(data)
+            save_transport_data(data)
             return t
 
     return None

@@ -1,5 +1,6 @@
 .transport-table-container {
     width: 100%;
+    margin: auto;
     border-radius: 8px;
     
     &::-webkit-scrollbar {
@@ -23,8 +24,7 @@
 
     table {
         width: 100%;
-        min-width: 900px;
-        table-layout: auto;
+        table-layout: fixed;
     }
 
     .MuiTableCell-head {
@@ -33,33 +33,37 @@
     }
 
     .col-id {
-        width: 220px;
+        width: 18%;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
+    .col-service {
+        width: 12%;
+    }
+
     .col-pickup {
-        width: 140px;
+        width: 12%;
     }
 
     .col-dropoff {
-        width: 140px;
+        width: 12%;
     }
 
-    .col-date {
-        width: 130px;
+    .col-due-date {
+        width: 12%;
     }
 
     .col-priority {
-        width: 100px;
+        width: 10%;
     }
 
     .col-status {
-        width: 130px;
+        width: 12%;
     }
 
     .col-actions {
-        width: 80px;
+        width: 12%;
     }
 
     .sortable-header {

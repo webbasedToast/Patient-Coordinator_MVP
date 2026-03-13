@@ -8,4 +8,4 @@ from models.user_type import UserType
 class User:
     id: UUID
     user_name: str
-    role: UserType
+    user_type: UserType

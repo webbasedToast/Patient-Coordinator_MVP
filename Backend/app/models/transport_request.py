@@ -6,6 +6,7 @@ from models.location import Location
 from models.priority import Priority
 from models.status import Status
 
+
 @dataclass
 class TransportRequest:
     id: UUID
@@ -14,3 +15,4 @@ class TransportRequest:
     assigned_timeframe: datetime
     priority: Priority
     status: Status
+    assigned_service: str

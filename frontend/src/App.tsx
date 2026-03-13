@@ -3,6 +3,7 @@ import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 import AddTransport from "./pages/AddTransport/AddTransport.tsx";
 import Layout from "./components/Layout/Layout.tsx";
 import {AuthProvider} from "./contexts/AuthContext.tsx";
+import AddUser from "./pages/AddUser/AddUser.tsx";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                     <Route element={<Layout />}>
                         <Route path="/transports" element={<Dashboard />} />
                         <Route path="/add-transport" element={<AddTransport />} />
+                        <Route path="/add-user" element={<AddUser />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

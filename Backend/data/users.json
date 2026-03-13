@@ -1,0 +1,29 @@
+{
+    "users": [
+        {
+            "id": "19840505-055d-45c0-815a-9d65e403f0a4",
+            "user_name": "DRK",
+            "user_type": "BASIC_USER"
+        },
+        {
+            "id": "d28d2bbc-e892-4c6e-b2cd-1dae1c8c45a9",
+            "user_name": "dev_admin",
+            "user_type": "ADMIN"
+        },
+        {
+            "id": "db9a58d7-19e0-421b-ae61-ec44b02d3bd5",
+            "user_name": "Viamed",
+            "user_type": "BASIC_USER"
+        },
+        {
+            "id": "d76b9660-0011-4b0a-91f7-c63031b033bc",
+            "user_name": "ASB",
+            "user_type": "BASIC_USER"
+        },
+        {
+            "id": "0138a14f-08ac-41af-8d01-52f4dca19ed9",
+            "user_name": "EVK West",
+            "user_type": "BASIC_USER"
+        }
+    ]
+}

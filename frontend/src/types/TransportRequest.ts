@@ -9,4 +9,5 @@ export interface TransportRequest {
     drop_off_location: LocationType;
     assigned_timeframe: string;
     priority: PriorityType;
+    assigned_service: string;
 }

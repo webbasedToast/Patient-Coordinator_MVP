@@ -13,6 +13,7 @@ class TransportCreate(BaseModel):
     drop_off_location: Location
     assigned_timeframe: datetime
     priority: Priority
+    assigned_service: str
 
 class TransportStatusUpdate(BaseModel):
     status: Status
@@ -24,3 +25,4 @@ class TransportResponse(BaseModel):
     assigned_timeframe: datetime
     priority: Priority
     status: Status
+    assigned_service: str
