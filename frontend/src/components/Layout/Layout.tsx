@@ -2,7 +2,7 @@ import {Outlet, useNavigate} from "react-router-dom";
 import {
     AppBar,
     Box,
-    Button,
+    Button, Divider,
     Drawer,
     List,
     ListItem,
@@ -18,13 +18,12 @@ import AddIcon from "@mui/icons-material/add";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from "@mui/icons-material/Logout";
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
 import {useAuth} from "../../contexts/AuthContext.tsx";
 import {useState} from "react";
 import LoginDialog from "../LoginDialog/LoginDialog.tsx";
 
-
-const DRAWER_WIDTH = 240;
 
 export default function Layout() {
     const navigate = useNavigate();
@@ -64,19 +63,6 @@ export default function Layout() {
             <Drawer
                 className="navbar"
                 variant="permanent"
-                sx={{
-                    position: 'relative',
-                    width: DRAWER_WIDTH,
-                    flexShrink: 0,
-                    height: '100vh',
-                    '& .MuiDrawer-paper': {
-                        position: 'relative',
-                        width: DRAWER_WIDTH,
-                        height: '100vh',
-                        boxSizing: 'border-box',
-                        backgroundColor: '#ffffff',
-                    },
-                }}
             >
                 <Toolbar />
                 <Box className="navbar-content">
@@ -98,7 +84,19 @@ export default function Layout() {
                                         <ListItemIcon>
                                             <AddIcon />
                                         </ListItemIcon>
-                                        <ListItemText primary="Add new Transport" />
+                                        <ListItemText primary="Assign Transport" />
+                                    </ListItemButton>
+                                </ListItem>
+
+                                <Divider className="navbar-divider" />
+                                <Typography className="navbar-header navbar-header-sm">User-Management</Typography>
+
+                                <ListItem disablePadding>
+                                    <ListItemButton onClick={() => navigate("/users")}>
+                                        <ListItemIcon>
+                                            <PeopleAltIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Show registered Users" />
                                     </ListItemButton>
                                 </ListItem>
                                 <ListItem disablePadding>
@@ -115,7 +113,10 @@ export default function Layout() {
                 </Box>
             </Drawer>
 
-            <Box component="main" className="main-content">
+            <Box
+                component="main"
+                className="main-content"
+            >
                 <Toolbar />
                 <Outlet />
             </Box>

@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, Query
+from uuid import UUID
 
-from schemas.transport_schemas import *
+from schemas.transport_schemas import TransportCreate, TransportStatusUpdate
 from services.transport_service import *
 
 router = APIRouter(prefix="/transports", tags=["transports"])
@@ -10,7 +11,7 @@ def list_all_transports(
     page: int = Query(1, ge=1),
     limit: int = Query(10, ge=1, le=100),
     sort_by: str = Query(None),
-    sort_order: str = Query("asc", regex="^(asc|desc)$"),
+    sort_order: SortingOrder = Query(SortingOrder.asc),
     assigned_service: str = Query(None)
 ):
     return get_transports_paginated(page, limit, sort_by, sort_order, assigned_service)

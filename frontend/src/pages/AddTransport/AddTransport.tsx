@@ -13,7 +13,7 @@ import {
     Paper,
     Radio,
     RadioGroup,
-    Select,
+    TextField,
     Typography
 } from "@mui/material";
 
@@ -82,42 +82,45 @@ export default function AddTransport() {
                 </Typography>
 
                 <FormControl fullWidth required>
-                    <Select
+                    <TextField
+                        select
+                        label="Pickup Location"
                         value={pickup_location}
-                        displayEmpty
                         onChange={event => setPickupLocation(event.target.value)}
                     >
                         <MenuItem value="" disabled>Pickup Location</MenuItem>
                         {LOCATION_OPTIONS.map(l =>
                             <MenuItem key={l} value={l}>{l}</MenuItem>
                         )}
-                    </Select>
+                    </TextField>
                 </FormControl>
 
                 <FormControl fullWidth required>
-                    <Select
+                    <TextField
+                        select
+                        label="Drop Off Location"
                         value={drop_off_location}
-                        displayEmpty
                         onChange={event => setDropOffLocation(event.target.value)}
                     >
                         <MenuItem value="" disabled>Drop Off Location</MenuItem>
                         {LOCATION_OPTIONS.map(l =>
                             <MenuItem key={l} value={l}>{l}</MenuItem>
                         )}
-                    </Select>
+                    </TextField>
                 </FormControl>
 
                 <FormControl fullWidth required>
-                    <Select
+                    <TextField
+                        select
+                        label="Assigend Transport Service"
                         value={assigned_service}
-                        displayEmpty
                         onChange={event => setAssignedService(event.target.value)}
                     >
                         <MenuItem value="" disabled>Assigned Service (User)</MenuItem>
                         {basicUsers.map((user: User) =>
                             <MenuItem key={user.id} value={user.user_name}>{user.user_name}</MenuItem>
                         )}
-                    </Select>
+                    </TextField>
                 </FormControl>
 
                 <FormControl fullWidth>
@@ -141,7 +144,7 @@ export default function AddTransport() {
                 <DatePicker
                     label="Due Date"
                     value={assigned_timeframe}
-                    onChange={(newValue) => setAssignedTimeframe(newValue || dayjs())}
+                    onChange={(v) => setAssignedTimeframe(v || dayjs())}
                     format="DD/MM/YYYY"
                 />
 

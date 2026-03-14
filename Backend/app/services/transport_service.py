@@ -1,5 +1,6 @@
 import uuid
 
+from models.SortingOrder import SortingOrder
 from models.status import Status
 from storage.json_storage import *
 
@@ -9,7 +10,13 @@ def get_all_transports():
     return data["transports"]
 
 
-def get_transports_paginated(page: int = 1, limit: int = 10, sort_by: str = None, sort_order: str = "asc", assigned_service: str = None):
+def get_transports_paginated(
+        page: int = 1,
+        limit: int = 10,
+        sort_by: str | None = None,
+        sort_order: SortingOrder = SortingOrder.asc,
+        assigned_service: str | None = None
+):
     data = load_transport_data()
     transports = data["transports"]
 
@@ -17,7 +24,7 @@ def get_transports_paginated(page: int = 1, limit: int = 10, sort_by: str = None
         transports = [t for t in transports if t.get("assigned_service") == assigned_service]
 
     if sort_by:
-        reverse = sort_order.lower() == "desc"
+        reverse = sort_order == SortingOrder.desc
         transports = sorted(transports, key=lambda x: x.get(sort_by, 0), reverse=reverse)
 
     total = len(transports)

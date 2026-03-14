@@ -24,6 +24,11 @@
             "id": "0138a14f-08ac-41af-8d01-52f4dca19ed9",
             "user_name": "EVK West",
             "user_type": "BASIC_USER"
+        },
+        {
+            "id": "d3bba1b4-4301-495f-b481-012e50985414",
+            "user_name": "dev_2",
+            "user_type": "ADMIN"
         }
     ]
 }

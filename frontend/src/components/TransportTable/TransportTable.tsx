@@ -1,5 +1,16 @@
 import type {TransportRequest} from "../../types/TransportRequest.ts";
-import {Chip, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination} from "@mui/material";
+import {
+    Chip,
+    IconButton,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TablePagination,
+    TableRow
+} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -7,6 +18,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import {fetchTransports} from "../../api/transports.ts";
 import {useQuery} from "@tanstack/react-query";
+import * as React from "react";
 import {useState} from "react";
 import {useAuth} from "../../contexts/AuthContext.tsx";
 import "./TransportTable.scss";
@@ -40,7 +52,7 @@ function priorityLabel(priority: number) {
 export default function TransportTable({onEdit, canEdit = false}: Props) {
     const {role, userName} = useAuth();
     const [page, setPage] = useState(0);
-    const [rowsPerPage] = useState(10);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
     const [sortConfig, setSortConfig] = useState<SortConfig>({ key: null, direction: null });
 
     const assignedService = role === 'BASIC_USER' ? userName ?? undefined : undefined;
@@ -88,14 +100,14 @@ export default function TransportTable({onEdit, canEdit = false}: Props) {
         setPage(newPage);
     };
 
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
     return (
         <Paper className="transport-table-container">
-            <TableContainer 
-                sx={{ 
-                    maxHeight: 'calc(100vh - 280px)',
-                    width: '100%'
-                }}
-            >
+            <TableContainer className="transport-table-scroll">
                 <Table size="small" stickyHeader className="transport-table">
                     <TableHead>
                         <TableRow>
@@ -117,11 +129,11 @@ export default function TransportTable({onEdit, canEdit = false}: Props) {
                     <TableBody>
                         {isLoading ? (
                             <TableRow>
-                                <TableCell colSpan={8} align="center">Loading...</TableCell>
+                                <TableCell colSpan={7} align="center">Loading...</TableCell>
                             </TableRow>
                         ) : transports.length === 0 ? (
                             <TableRow>
-                                <TableCell colSpan={8} align="center">No transports found</TableCell>
+                                <TableCell colSpan={7} align="center">No transports found</TableCell>
                             </TableRow>
                         ) : (
                             transports.map((t) => (
@@ -154,7 +166,8 @@ export default function TransportTable({onEdit, canEdit = false}: Props) {
                 page={page}
                 onPageChange={handleChangePage}
                 rowsPerPage={rowsPerPage}
-                rowsPerPageOptions={[10]}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                rowsPerPageOptions={[5, 10, 25]}
             />
         </Paper>
     )

@@ -1,92 +1,36 @@
 .transport-table-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    margin: auto;
-    border-radius: 8px;
-    
-    &::-webkit-scrollbar {
-        height: 8px;
-        width: 8px;
-    }
+    margin: 24px 24px 0 0;
+    box-sizing: border-box;
+}
 
-    &::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: #c1c1c1;
-        border-radius: 4px;
-        
-        &:hover {
-            background: #a1a1a1;
-        }
-    }
-
-    table {
-        width: 100%;
-        table-layout: fixed;
-    }
+.transport-table {
+    width: 100%;
+    table-layout: fixed;
 
     .MuiTableCell-head {
         background-color: #f5f5f5;
         font-weight: 600;
     }
 
-    .col-id {
-        width: 18%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .col-service {
-        width: 12%;
-    }
-
-    .col-pickup {
-        width: 12%;
-    }
-
-    .col-dropoff {
-        width: 12%;
-    }
-
-    .col-due-date {
-        width: 12%;
-    }
-
-    .col-priority {
-        width: 10%;
-    }
-
-    .col-status {
-        width: 12%;
-    }
-
-    .col-actions {
-        width: 12%;
-    }
+    .col-service, .col-pickup, .col-dropoff, .col-due-date { width: 10%; }
+    .col-priority { width: 10%; }
+    .col-status, .col-actions { width: 5%; }
 
     .sortable-header {
         cursor: pointer;
         user-select: none;
         white-space: nowrap;
-        
-        &:hover {
-            background-color: #e8e8e8 !important;
-        }
+
+        &:hover { background-color: #e8e8e8 !important; }
 
         .sort-icon {
             vertical-align: middle;
             margin-left: 4px;
-            
-            &.inactive {
-                opacity: 0.3;
-            }
-            
-            &.active {
-                opacity: 1;
-                color: #1976d2;
-            }
+            &.inactive { opacity: 0.3; }
+            &.active { opacity: 1; color: #1976d2; }
         }
     }
 }

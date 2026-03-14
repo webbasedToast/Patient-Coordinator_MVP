@@ -1,41 +1,9 @@
 .transportEditDialog {
-
-  .MuiDialog-paper {
-    min-width: 460px;
-    max-width: 90vw;
-  }
-
-  .MuiDialogContent-root {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    margin-top: 10px;
-  }
-
-  .MuiFormControl-root {
-    width: 100%;
-  }
-
-  .MuiSelect-select {
-    overflow: visible !important;
-  }
-
-  .MuiPaper-root {
-    overflow: visible !important;
-  }
-
-  .MuiDialog-container {
-    align-items: flex-start;
-    padding-top: 48px;
-  }
-
-  .MuiRadioGroup-root {
-    flex-direction: row;
-    gap: 20px;
-  }
-
-  .MuiDialogActions-root {
-    padding: 16px 24px;
-  }
-
+    .MuiDialog-paper { min-width: 460px; max-width: 90vw; }
+    .MuiDialogContent-root { display: flex; flex-direction: column; gap: 18px; margin-top: 10px; }
+    .MuiFormControl-root { width: 100%; }
+    .MuiSelect-select, .MuiPaper-root { overflow: visible !important; }
+    .MuiDialog-container { align-items: flex-start; padding-top: 48px; }
+    .MuiRadioGroup-root { flex-direction: row; gap: 20px; }
+    .MuiDialogActions-root { padding: 16px 24px; }
 }
