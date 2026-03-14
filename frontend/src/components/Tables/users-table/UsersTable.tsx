@@ -15,7 +15,7 @@ import {
     Tooltip
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import TablePaginationActions from "../TablePaginationActions/TablePaginationActions.tsx";
+import TablePaginationActions from "../table-pagination-actions/TablePaginationActions.tsx";
 
 import "./UsersTable.scss";
 import type {User} from "../../../types/User.ts";

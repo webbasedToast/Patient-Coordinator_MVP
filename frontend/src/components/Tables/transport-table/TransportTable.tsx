@@ -16,7 +16,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import TablePaginationActions from "../TablePaginationActions/TablePaginationActions.tsx";
+import TablePaginationActions from "../table-pagination-actions/TablePaginationActions.tsx";
 
 import {fetchTransports} from "../../../api/transports.ts";
 import {useQuery} from "@tanstack/react-query";

@@ -1,10 +1,10 @@
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import TransportsDashboard from "./pages/TransportsDashboard/TransportsDashboard.tsx";
-import AddTransport from "./pages/AddTransport/AddTransport.tsx";
-import AppLayout from "./components/Layout/AppLayout/AppLayout.tsx";
+import TransportsDashboard from "./pages/transports-dashboard/TransportsDashboard.tsx";
+import AddTransport from "./pages/add-transport/AddTransport.tsx";
+import AppLayout from "./components/Layout/app-layout/AppLayout.tsx";
 import {AuthProvider} from "./contexts/AuthContext.tsx";
-import AddUser from "./pages/AddUser/AddUser.tsx";
-import UserManagement from "./pages/UserManagement/UserManagement.tsx";
+import AddUser from "./pages/add-user/AddUser.tsx";
+import UserManagement from "./pages/user-management/UserManagement.tsx";
 
 function App() {
     return (

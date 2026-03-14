@@ -88,7 +88,6 @@ export default function AddTransport() {
                         value={pickup_location}
                         onChange={event => setPickupLocation(event.target.value)}
                     >
-                        <MenuItem value="" disabled>Pickup Location</MenuItem>
                         {LOCATION_OPTIONS.map(l =>
                             <MenuItem key={l} value={l}>{l}</MenuItem>
                         )}
@@ -102,7 +101,6 @@ export default function AddTransport() {
                         value={drop_off_location}
                         onChange={event => setDropOffLocation(event.target.value)}
                     >
-                        <MenuItem value="" disabled>Drop Off Location</MenuItem>
                         {LOCATION_OPTIONS.map(l =>
                             <MenuItem key={l} value={l}>{l}</MenuItem>
                         )}
@@ -116,7 +114,6 @@ export default function AddTransport() {
                         value={assigned_service}
                         onChange={event => setAssignedService(event.target.value)}
                     >
-                        <MenuItem value="" disabled>Assigned Service (User)</MenuItem>
                         {basicUsers.map((user: User) =>
                             <MenuItem key={user.id} value={user.user_name}>{user.user_name}</MenuItem>
                         )}

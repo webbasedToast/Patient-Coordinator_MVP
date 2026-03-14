@@ -12,8 +12,8 @@ import {
     Typography
 } from "@mui/material";
 import "./AppNavigation.scss";
-import ListIcon from "@mui/icons-material/List";
-import AddIcon from "@mui/icons-material/add";
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import AssignmentAddIcon from '@mui/icons-material/AssignmentAdd';
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
@@ -30,12 +30,12 @@ export default function AppNavigation() {
         >
             <Toolbar />
             <Box className="navbar-content">
-                <Typography className="navbar-header">Navigation</Typography>
+                <Typography variant="h6" className="navbar-header">Navigation</Typography>
                 <List>
                     <ListItem disablePadding>
                         <ListItemButton onClick={() => navigate("/transports")}>
                             <ListItemIcon>
-                                <ListIcon />
+                                <AssignmentIcon />
                             </ListItemIcon>
                             <ListItemText primary="Transports" />
                         </ListItemButton>
@@ -46,14 +46,14 @@ export default function AppNavigation() {
                             <ListItem disablePadding>
                                 <ListItemButton onClick={() => navigate("/add-transport")}>
                                     <ListItemIcon>
-                                        <AddIcon />
+                                        <AssignmentAddIcon />
                                     </ListItemIcon>
                                     <ListItemText primary="Assign Transport" />
                                 </ListItemButton>
                             </ListItem>
 
                             <Divider className="navbar-divider" />
-                            <Typography className="navbar-header navbar-header-sm">User-Management</Typography>
+                            <Typography variant="subtitle2" className="navbar-header">User-Management</Typography>
 
                             <ListItem disablePadding>
                                 <ListItemButton onClick={() => navigate("/users")}>

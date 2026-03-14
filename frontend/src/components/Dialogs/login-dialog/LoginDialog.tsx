@@ -10,16 +10,15 @@ import {
 } from "@mui/material";
 
 import "./LoginDialog.scss";
-import {loginUser} from "../../api/users.ts";
+import {loginUser} from "../../../api/users.ts";
 
 interface LoginDialogProps {
     open: boolean;
     onClose: () => void;
     onLogin: (role: 'ADMIN' | 'BASIC_USER', userName: string) => void;
-    currentRole: 'ADMIN' | 'BASIC_USER' | null;
 }
 
-export default function LoginDialog({open, onClose, onLogin, currentRole}: LoginDialogProps) {
+export default function LoginDialog({open, onClose, onLogin}: LoginDialogProps) {
     const [userName, setUserName] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -53,9 +52,7 @@ export default function LoginDialog({open, onClose, onLogin, currentRole}: Login
 
     return (
         <Dialog open={open} onClose={handleClose} className="login-dialog">
-            <DialogTitle>
-                {currentRole ? 'Change User' : 'Login'}
-            </DialogTitle>
+            <DialogTitle>Login</DialogTitle>
             <DialogContent>
                 <TextField
                     autoFocus

@@ -6,13 +6,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 
 import {useAuth} from "../../../contexts/AuthContext.tsx";
 import {useState} from "react";
-import LoginDialog from "../../LoginDialog/LoginDialog.tsx";
-import PageContainer from "../PageContainer/PageContainer.tsx";
-import AppNavigation from "../AppNavigation/AppNavigation.tsx";
+import LoginDialog from "../../Dialogs/login-dialog/LoginDialog.tsx";
+import PageContainer from "../page-container/PageContainer.tsx";
+import AppNavigation from "../app-navigation/AppNavigation.tsx";
 
 export default function AppLayout() {
     const navigate = useNavigate();
-    const {role, isLoggedIn, login, logout} = useAuth();
+    const {isLoggedIn, login, logout} = useAuth();
     const [loginDialogOpen, setLoginDialogOpen] = useState(false);
 
     const handleLogin = () => {
@@ -53,7 +53,6 @@ export default function AppLayout() {
                 open={loginDialogOpen}
                 onClose={() => setLoginDialogOpen(false)}
                 onLogin={login}
-                currentRole={role}
             />
 
         </Box>

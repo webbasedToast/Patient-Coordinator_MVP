@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 
-import {updateTransportStatus} from "../../api/transports.ts";
-import type {TransportRequest} from "../../types/TransportRequest.ts";
+import {updateTransportStatus} from "../../../api/transports.ts";
+import type {TransportRequest} from "../../../types/TransportRequest.ts";
 import {
     Button,
     Dialog,
@@ -12,7 +12,7 @@ import {
     FormControl,
     InputLabel,
     MenuItem,
-    Select
+    Select, TextField
 } from "@mui/material";
 
 import "./TransportEditDialog.scss"
@@ -71,18 +71,19 @@ export default function TransportEditDialog({
         <Dialog className="transportEditDialog" open={open} onClose={onClose}>
             <DialogTitle>Edit Transport Status</DialogTitle>
             <DialogContent>
-                <FormControl fullWidth>
-                    <InputLabel>Status</InputLabel>
-                    <Select
-                        value={status}
-                        label="Status"
-                        onChange={event => setStatus(event.target.value)}
-                    >
-                        {STATUS_OPTIONS.map(s =>
-                            <MenuItem key={s} value={s}>{s}</MenuItem>
-                        )}
-                    </Select>
-                </FormControl>
+                <TextField
+                    select
+                    margin="dense"
+                    variant="outlined"
+                    fullWidth
+                    value={status}
+                    label="Status"
+                    onChange={event => setStatus(event.target.value)}
+                >
+                    {STATUS_OPTIONS.map(s =>
+                        <MenuItem key={s} value={s}>{s}</MenuItem>
+                    )}
+                </TextField>
             </DialogContent>
 
             <DialogActions>
