@@ -1,0 +1,17 @@
+.table-pagination-actions {
+    display: flex;
+}
+
+.MuiTableFooter-root {
+    .MuiTablePagination-root {
+        width: 100%;
+    }
+    .MuiTablePagination-toolbar {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 8px;
+    }
+    .MuiTablePagination-spacer {
+        display: none;
+    }
+}

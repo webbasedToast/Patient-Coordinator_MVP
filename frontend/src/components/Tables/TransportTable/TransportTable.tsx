@@ -1,4 +1,4 @@
-import type {TransportRequest} from "../../types/TransportRequest.ts";
+import type {TransportRequest} from "../../../types/TransportRequest.ts";
 import {
     Chip,
     IconButton,
@@ -7,6 +7,7 @@ import {
     TableBody,
     TableCell,
     TableContainer,
+    TableFooter,
     TableHead,
     TablePagination,
     TableRow
@@ -15,12 +16,13 @@ import EditIcon from "@mui/icons-material/Edit";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import TablePaginationActions from "../TablePaginationActions/TablePaginationActions.tsx";
 
-import {fetchTransports} from "../../api/transports.ts";
+import {fetchTransports} from "../../../api/transports.ts";
 import {useQuery} from "@tanstack/react-query";
 import * as React from "react";
 import {useState} from "react";
-import {useAuth} from "../../contexts/AuthContext.tsx";
+import {useAuth} from "../../../contexts/AuthContext.tsx";
 import "./TransportTable.scss";
 
 type SortKey = 'priority' | 'status' | 'assigned_timeframe';
@@ -84,15 +86,15 @@ export default function TransportTable({onEdit, canEdit = false}: Props) {
 
     const getSortIcon = (key: SortKey) => {
         const isActive = sortConfig.key === key;
-        
+
         if (!isActive) {
             return <UnfoldMoreIcon fontSize="small" className="sort-icon inactive" />;
         }
-        
+
         if (sortConfig.direction === 'asc') {
             return <ExpandLessIcon fontSize="small" className="sort-icon active" />;
         }
-        
+
         return <ExpandMoreIcon fontSize="small" className="sort-icon active" />;
     };
 
@@ -147,7 +149,7 @@ export default function TransportTable({onEdit, canEdit = false}: Props) {
                                         <Chip label={t.status} size="small"/>
                                     </TableCell>
                                     <TableCell className="col-actions" align="right">
-                                        <IconButton 
+                                        <IconButton
                                             onClick={() => canEdit && onEdit?.(t)}
                                             disabled={!canEdit}
                                         >
@@ -158,17 +160,21 @@ export default function TransportTable({onEdit, canEdit = false}: Props) {
                             ))
                         )}
                     </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                count={response?.total ?? 0}
+                                page={page}
+                                onPageChange={handleChangePage}
+                                rowsPerPage={rowsPerPage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                rowsPerPageOptions={[5, 10]}
+                                ActionsComponent={TablePaginationActions}
+                            />
+                        </TableRow>
+                    </TableFooter>
                 </Table>
             </TableContainer>
-            <TablePagination
-                component="div"
-                count={response?.total ?? 0}
-                page={page}
-                onPageChange={handleChangePage}
-                rowsPerPage={rowsPerPage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                rowsPerPageOptions={[5, 10, 25]}
-            />
         </Paper>
     )
 }

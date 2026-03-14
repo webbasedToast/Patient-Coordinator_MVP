@@ -1,32 +1,36 @@
+import * as React from "react";
 import {useState} from "react";
-import {useQuery, useMutation} from "@tanstack/react-query";
-import {fetchUsersPaginated, deleteUser, type User} from "../../api/users.ts";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import {
     IconButton,
     Paper,
     Table,
     TableBody,
     TableCell,
-    TableContainer, TableFooter,
+    TableContainer,
+    TableFooter,
     TableHead,
     TablePagination,
     TableRow,
     Tooltip
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import TablePaginationActions from "../TablePaginationActions/TablePaginationActions.tsx";
 
 import "./UsersTable.scss";
+import type {User} from "../../../types/User.ts";
+import {deleteUser, fetchUsersPaginated} from "../../../api/users.ts";
 
 interface Props {
     canDelete?: boolean;
     onDelete?: (user: User) => void;
 }
 
-export default function UsersTable({canDelete = false, onDelete}: Props) {
+export default function UsersTable({ canDelete = false, onDelete }: Props) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
-    const {data: response, isLoading, refetch} = useQuery({
+    const { data: response, isLoading, refetch } = useQuery({
         queryKey: ["users", page, rowsPerPage],
         queryFn: () => fetchUsersPaginated(
             page + 1,
@@ -52,7 +56,7 @@ export default function UsersTable({canDelete = false, onDelete}: Props) {
         }
     };
 
-    const handleChangePage = (_event: unknown, newPage: number) => {
+    const handleChangePage = (_event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         setPage(newPage);
     };
 
@@ -100,21 +104,19 @@ export default function UsersTable({canDelete = false, onDelete}: Props) {
                             ))
                         )}
                     </TableBody>
-
                     <TableFooter>
                         <TableRow>
                             <TablePagination
-                                component="div"
                                 count={response?.total ?? 0}
                                 page={page}
                                 onPageChange={handleChangePage}
                                 rowsPerPage={rowsPerPage}
                                 onRowsPerPageChange={handleChangeRowsPerPage}
-                                rowsPerPageOptions={[5, 10, 25]}
+                                rowsPerPageOptions={[5, 10]}
+                                ActionsComponent={TablePaginationActions}
                             />
                         </TableRow>
                     </TableFooter>
-
                 </Table>
             </TableContainer>
         </Paper>

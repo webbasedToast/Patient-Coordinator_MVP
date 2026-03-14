@@ -2,7 +2,7 @@ import {useState} from "react";
 import TransportEditDialog from "../../components/TransportEditDialog/TransportEditDialog.tsx";
 import "./TransportsDashboard.scss";
 import {Box} from "@mui/material";
-import TransportTable from "../../components/TransportTable/TransportTable.tsx";
+import TransportTable from "../../components/Tables/TransportTable/TransportTable.tsx";
 import {useAuth} from "../../contexts/AuthContext.tsx";
 import type {TransportRequest} from "../../types/TransportRequest.ts";
 
