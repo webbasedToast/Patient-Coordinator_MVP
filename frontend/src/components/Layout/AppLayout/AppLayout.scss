@@ -1,0 +1,26 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: #fafafa;
+
+    .headband {
+        background-color: #1976d2;
+        z-index: 1201;
+
+        .headband-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .headband-title {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+
+        .login-button {
+            margin-left: auto;
+            border-radius: 8px;
+        }
+    }
+}
