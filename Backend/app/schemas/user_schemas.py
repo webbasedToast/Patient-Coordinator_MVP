@@ -8,7 +8,7 @@ class UserCreate(BaseModel):
     user_name: str
     user_type: UserType
 
-class UserResponse(BaseModel):
-    id: UUID
-    user_name: str
-    user_type: UserType
+# class UserResponse(BaseModel):
+#     id: UUID
+#     user_name: str
+#     user_type: UserType

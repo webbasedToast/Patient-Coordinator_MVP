@@ -18,11 +18,11 @@ class TransportCreate(BaseModel):
 class TransportStatusUpdate(BaseModel):
     status: Status
 
-class TransportResponse(BaseModel):
-    id: UUID
-    pickup_location: Location
-    drop_off_location: Location
-    assigned_timeframe: datetime
-    priority: Priority
-    status: Status
-    assigned_service: str
+# class TransportResponse(BaseModel):
+#     id: UUID
+#     pickup_location: Location
+#     drop_off_location: Location
+#     assigned_timeframe: datetime
+#     priority: Priority
+#     status: Status
+#     assigned_service: str
