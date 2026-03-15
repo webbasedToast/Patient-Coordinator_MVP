@@ -1,54 +1,20 @@
 # Patient-Coordinator\_MVP
 
+Minimal Viable Product (MVP) zur Koordination und Verwaltung von Patiententransporten.
 
+Der Aufbau des Projektes besteht aus zwei voneinander getrennten Komponenten:
 
+- **Frontend** - Weboberfläche zur Verwaltung und Anzeige von Transportaufträgen
+- **Backend** - REST-API zum Speichern und Verarbeiten der Transport- und Nutzerdaten
 
+## Installation
 
-Backend
+Die Installation der Komponenten erfolgt unabhängig von einander.
 
-│
+### Backend
 
-├── app
+[Anleitung](backend/README.md) zur Installation und zum Start der API.
 
-│   ├── main.py
+### Frontend
 
-│   │
-
-│   ├── api
-
-│   │   └── router.py
-
-│   │
-
-│   ├── schemas
-
-│   │   └── transport\_schema.py
-
-│   │
-
-│   ├── models
-
-│   │   ├── transport.py
-
-│   │   ├── status.py
-
-│   │   └── priority.py
-
-│   │
-
-│   ├── services
-
-│   │   └── transport\_service.py
-
-│   │
-
-│   └── storage
-
-│       └── json\_storage.py
-
-│
-
-└── data
-
-&#x20;   └── transports.json
-
+[Anleitung](frontend/README.mde) zur Installation und zum Start der Weboberfläche.

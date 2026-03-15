@@ -3,19 +3,17 @@ import {useMutation, useQueryClient} from "@tanstack/react-query";
 
 import {updateTransportStatus} from "../../../api/transports.ts";
 import type {TransportRequest} from "../../../types/TransportRequest.ts";
+
+import "./TransportEditDialog.scss"
 import {
     Button,
     Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
-    FormControl,
-    InputLabel,
     MenuItem,
-    Select, TextField
+    TextField
 } from "@mui/material";
-
-import "./TransportEditDialog.scss"
 
 const STATUS_OPTIONS = [
     "ASSIGNED",
