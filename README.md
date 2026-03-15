@@ -13,7 +13,7 @@ Die Installation der Komponenten erfolgt unabhängig von einander.
 
 ### Backend
 
-[Anleitung](backend/README.md) zur Installation und zum Start der API.
+[Anleitung](Backend/README.md) zur Installation und zum Start der API.
 
 ### Frontend
 
